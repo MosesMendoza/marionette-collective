@@ -1,14 +1,17 @@
 %{!?ruby_sitelib: %global ruby_sitelib %(ruby -rrbconfig -e "puts Config::CONFIG['sitelibdir']")}
-%define release %{rpm_release}%{?dist}
+
+# VERSION is subbed out during rake package:srpm process
+%global realversion <%= @version %>
+%global rpmversion <%= @rpmversion %>
 
 Summary: Application Server for hosting Ruby code on any capable middleware
 Name: mcollective
-Version: %{version}
-Release: %{release}
+Version: %{rpmversion}
+Release: <%= @rpmrelease -%>%{?dist}
 Group: System Environment/Daemons
 License: ASL 2.0
 URL: http://puppetlabs.com/mcollective/introduction/
-Source0: http://downloads.puppetlabs.com/mcollective/%{name}-%{version}.tgz
+Source0: http://downloads.puppetlabs.com/mcollective/%{name}-%{realversion}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildRequires: ruby
 BuildRequires: ruby(abi) = 1.8
@@ -158,5 +161,8 @@ fi
 %config(noreplace)%{_sysconfdir}/mcollective/plugin.d
 
 %changelog
+* <%= Time.now.strftime("%a %b %d %Y") %> Puppet Labs Release <info@puppetlabs.com> -  <%= @rpmversion %>-<%= @rpmrelease %>
+- Build for <%= @version %>
+
 * Tue Nov 03 2009 R.I.Pienaar <rip@devco.net>
 - First release
