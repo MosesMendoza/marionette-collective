@@ -1,0 +1,11 @@
+#!/bin/sh -e
+
+# Remove symlinks put in place on mcollective installs on Ubuntu Hardy
+if [ -L /usr/local/lib/site_ruby/1.8/mcollective ] ; then
+  rm -rf /usr/local/lib/site_ruby/1.8/mcollective || :
+fi
+
+if [ -L /usr/local/lib/site_ruby/1.8/mcollective.rb ] ; then
+  rm -rf /usr/local/lib/site_ruby/1.8/mcollective.rb || :
+fi
+

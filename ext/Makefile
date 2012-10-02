@@ -16,8 +16,8 @@ install-bin:
 	cp bin/mcollectived $(DESTDIR)/usr/sbin/mcollectived
 
 install-lib:
-	install -d $(DESTDIR)/usr/lib/ruby/1.8/
-	cp -a lib/* $(DESTDIR)/usr/lib/ruby/1.8/
+	install -d $(DESTDIR)/usr/lib/ruby/vendor_ruby
+	cp -a lib/* $(DESTDIR)/usr/lib/ruby/vendor_ruby
 
 install-conf:
 	install -d $(DESTDIR)/etc/mcollective/
@@ -37,7 +37,7 @@ install-doc:
 
 uninstall:
 	rm -f $(DESTDIR)/usr/sbin/mcollectived
-	rm -rf $(DESTDIR)/usr/lib/ruby/1.8/mcollective*
+	rm -rf $(DESTDIR)/usr/lib/ruby/vendor_ruby/mcollective*
 	rm -rf $(DESTDIR)/usr/share/mcollective
 	rm -rf $(DESTDIR)/etc/mcollective
 

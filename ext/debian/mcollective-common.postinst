@@ -1,0 +1,11 @@
+#!/bin/sh -e
+
+case "$1" in
+configure)
+    if grep -q 'Ubuntu 8.04' /etc/issue ; then
+      mkdir -p /usr/local/lib/site_ruby/1.8 || :
+      ln -s /usr/lib/ruby/vendor_ruby/mcollective /usr/local/lib/site_ruby/1.8/ || :
+      ln -s /usr/lib/ruby/vendor_ruby/mcollective.rb /usr/local/lib/site_ruby/1.8/ || :
+    fi
+esac
+
